@@ -15,4 +15,17 @@ class StatusService {
       throw Exception('error');
     }
   }
+
+  Future<List<dynamic>> fetchCountryData() async {
+    var data;
+
+    final reponse = await http.get(Uri.parse(ApiUrls.countriesList));
+
+    if (reponse.statusCode == 200) {
+      data = jsonDecode(reponse.body);
+      return data;
+    } else {
+      throw Exception('error');
+    }
+  }
 }

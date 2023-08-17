@@ -1,4 +1,5 @@
 import 'package:covid_19_application/Services/states_data.dart';
+import 'package:covid_19_application/countries_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -100,16 +101,24 @@ class _WorldStatesScreenState extends State<WorldStatesScreen> with TickerProvid
                         ),
                         const SizedBox(height: 10),
                         // Button to navigate to country-specific tracking.
-                        Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: const Color(0xff1aa260),
-                            borderRadius: BorderRadius.circular(10),
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>  CountriesList(),
+                            ),
                           ),
-                          child: const Center(
-                            child: Text(
-                              'Track Countries',
-                              style: TextStyle(color: Colors.white),
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff1aa260),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Track Countries',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         )
