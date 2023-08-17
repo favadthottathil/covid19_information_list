@@ -4,6 +4,7 @@ import 'package:covid_19_application/word_states.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+// SplashScreen widget displays a loading animation before navigating to the main screen.
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -11,7 +12,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 3),
     vsync: this,
@@ -21,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void dispose() {
     super.dispose();
 
+    // Dispose the animation controller.
     _controller.dispose();
   }
 
@@ -28,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void initState() {
     super.initState();
 
+    // Schedule a timer to navigate to the main screen after a delay.
     Timer(
       const Duration(seconds: 5),
       () => Navigator.push(
@@ -50,6 +54,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Animated virus image rotating during the loading phase.
             AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
@@ -69,6 +74,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
               ),
             ),
             SizedBox(height: size.height * .08),
+            // Text displaying the app name during the loading phase.
             const Align(
               alignment: Alignment.center,
               child: Text(
