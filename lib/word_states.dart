@@ -63,10 +63,10 @@ class _WorldStatesScreenState extends State<WorldStatesScreen> with TickerProvid
                     return Column(
                       children: [
                         PieChart(
-                          dataMap: const {
-                            'Total': 20,
-                            "Recovered": 15,
-                            "Deaths": 5,
+                          dataMap: {
+                            'Total': double.parse(snapshot.data!.cases.toString()),
+                            "Recovered": double.parse(snapshot.data!.recovered.toString()),
+                            "Deaths": double.parse(snapshot.data!.deaths.toString()),
                           },
                           chartLegendSpacing: 50,
                           ringStrokeWidth: 13,
@@ -83,19 +83,22 @@ class _WorldStatesScreenState extends State<WorldStatesScreen> with TickerProvid
                           chartType: ChartType.ring,
                           colorList: colorList,
                         ),
+                        const SizedBox(height: 20),
                         // Card displaying detailed COVID-19 statistics.
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: size.height * .06),
-                          child: Card(
-                            child: Column(
-                              children: const [
-                                ReUsableRow(title: 'Total Cases', value: '200'),
-                                ReUsableRow(title: 'Recovered', value: '200'),
-                                ReUsableRow(title: 'Deaths', value: '200'),
-                              ],
-                            ),
+                        Card(
+                          child: Column(
+                            children: [
+                              ReUsableRow(title: 'Total', value: snapshot.data!.cases.toString()),
+                              ReUsableRow(title: 'Deaths', value: snapshot.data!.deaths.toString()),
+                              ReUsableRow(title: 'Recovered', value: snapshot.data!.recovered.toString()),
+                              ReUsableRow(title: 'Active', value: snapshot.data!.active.toString()),
+                              ReUsableRow(title: 'Critical', value: snapshot.data!.critical.toString()),
+                              ReUsableRow(title: 'Today Deaths', value: snapshot.data!.todayDeaths.toString()),
+                              ReUsableRow(title: 'Today Recovered', value: snapshot.data!.todayRecovered.toString()),
+                            ],
                           ),
                         ),
+                        const SizedBox(height: 10),
                         // Button to navigate to country-specific tracking.
                         Container(
                           height: 50,
