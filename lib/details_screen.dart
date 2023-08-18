@@ -33,7 +33,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         title: Text(widget.name),
         centerTitle: true,
       ),
-      body: Column(
+      body: Column( 
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
